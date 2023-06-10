@@ -29,10 +29,51 @@ tabs.forEach((tab) => {
 });
 
 /*=============== MIXITUP FILTER PORTFOLIO ===============*/
+let mixerPortfolio = mixitup('.work__container', {
+  selectors: {
+    target: '.work__card',
+  },
+  animation: {
+    duration: 300,
+  },
+});
 
 /*===== Link Active Work =====*/
+const linkWork = document.querySelectorAll('.work__item');
+
+function activeWork() {
+  linkWork.forEach((link) => link.classList.remove('active-work'));
+  this.classList.add('active-work');
+}
+
+linkWork.forEach((link) => link.addEventListener('click', activeWork));
 
 /*===== Work Popup =====*/
+document.addEventListener('click', (event) => {
+  if (event.target.classList.contains('work__button')) {
+    togglePortfolioPopup();
+    portfolioItemDetails(event.target.parentElement);
+  }
+});
+
+document
+  .querySelector('.portfolio__popup-close')
+  .addEventListener('click', togglePortfolioPopup);
+
+function togglePortfolioPopup() {
+  document.querySelector('.portfolio__popup').classList.toggle('open');
+}
+
+function portfolioItemDetails(portfolioItem) {
+  document.querySelector('.pp__thumbnail img').src =
+    portfolioItem.querySelector('.work__img').src;
+
+  document.querySelector('.portfolio__popup-subtitle span').innerHTML =
+    portfolioItem.querySelector('.work__title').innerHTML;
+
+  document.querySelector('.portfolio__popup-body').innerHTML =
+    portfolioItem.querySelector('.portfolio__item-details').innerHTML;
+}
 
 /*=============== SERVICES MODAL ===============*/
 
