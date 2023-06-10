@@ -76,6 +76,21 @@ function portfolioItemDetails(portfolioItem) {
 }
 
 /*=============== SERVICES MODAL ===============*/
+const modalViews = document.querySelectorAll('.services__modal'),
+  modalBtns = document.querySelectorAll('.services__button'),
+  modalCloses = document.querySelectorAll('.services__modal-close');
+
+let modal = function (modalClick) {
+  modalViews[modalClick].classList.toggle('active-modal');
+};
+
+modalBtns.forEach((modelBtn, index) => {
+  modelBtn.addEventListener('click', () => modal(index));
+});
+
+modalCloses.forEach((modalClose, index) => {
+  modalClose.addEventListener('click', () => modal(index));
+});
 
 /*=============== SWIPER TESTIMONIAL ===============*/
 
